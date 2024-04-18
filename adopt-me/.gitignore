@@ -1,0 +1,6 @@
+node_modnode_modules
+dist/
+.env
+.DS_Store
+coverage/
+.vscode/
