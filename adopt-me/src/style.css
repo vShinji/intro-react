@@ -348,12 +348,13 @@ form .pet {
 
 .loader {
   font-size: 100px;
-  animation: spin 1s linear infinite;
+  animation: scale 1s linear infinite alternate;
 }
 
-@keyframes spin {
+@keyframes scale {
   to {
-    transform: rotate(360deg);
+    transform: scale(50%);
+    opacity: 60%;
   }
 }
 
