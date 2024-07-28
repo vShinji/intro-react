@@ -21,9 +21,10 @@ const SearchParams = () => {
   const pets = results?.data?.pets ?? [];
 
   return (
-    <div className="search-params">
+    <div className="mx-auto my-0 w-11/12">
       <form
-        onSubmit= {(e) => {
+        className="mb-10 flex flex-col items-center justify-center rounded-lg bg-gray-200 p-10 shadow-lg"
+        onSubmit={(e) => {
           e.preventDefault();
           const formData = new FormData(e.target);
           const obj = {
@@ -34,46 +35,40 @@ const SearchParams = () => {
           setRequestParams(obj);
         }}
       >
-        {
-          adoptedPet ? (
-            <div className="pet image-container">
-              <img src={adoptedPet.images[0]} alt={adoptedPet.name} />
-            </div>
-          ) : null
-        }
+        {adoptedPet ? (
+          <div className="pet image-container">
+            <img src={adoptedPet.images[0]} alt={adoptedPet.name} />
+          </div>
+        ) : null}
         <label htmlFor="location">
           Location
-          <input
-            name="location"
-            id="location"
-            placeholder="Location"
-          />
+          <input name="location" id="location" placeholder="Location" />
         </label>
         <label htmlFor="animal">
           Animal
           <select
-            id = "animal"
-            value = {animal}
-            onChange = {(e) => {
+            id="animal"
+            value={animal}
+            onChange={(e) => {
               setAnimal(e.target.value);
             }}
           >
             <option />
             {ANIMALS.map((animal) => (
-              <option key = {animal} value = {animal}>{animal}</option>
+              <option key={animal} value={animal}>
+                {animal}
+              </option>
             ))}
           </select>
         </label>
         <label htmlFor="breed">
           Breed
-          <select
-            id = "breed"
-            disabled = {!breeds.length}
-            name = "breed"
-          >
+          <select id="breed" disabled={!breeds.length} name="breed">
             <option />
             {breeds.map((breed) => (
-              <option key = {breed} value = {breed}>{breed}</option>
+              <option key={breed} value={breed}>
+                {breed}
+              </option>
             ))}
           </select>
         </label>
