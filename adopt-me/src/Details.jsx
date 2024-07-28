@@ -17,18 +17,17 @@ const Details = () => {
 
   if (results.isLoading) {
     return (
-      <div className="loading-pane">
-        <h2 className="loader">🐾</h2>
+      <div className="w-100 h-100">
+        <h2 className="animation-bounce">🐾</h2>
       </div>
     );
-  };
+  }
 
   const pet = results.data.pets[0];
 
-
   return (
     <div className="details">
-      <Carousel images={pet.images}/>
+      <Carousel images={pet.images} />
       <div>
         <h1>{pet.name}</h1>
         <h2>
@@ -37,19 +36,23 @@ const Details = () => {
         <button onClick={() => setShowModal(true)}>Adopt {pet.name}</button>
         <p>{pet.description}</p>
         {showModal ? (
-            <Modal>
-              <div>
-                <h1>Would you like to adopt {pet.name}?</h1>
-                <div className="buttons">
-                  <button onClick={() =>{
+          <Modal>
+            <div>
+              <h1>Would you like to adopt {pet.name}?</h1>
+              <div className="buttons">
+                <button
+                  onClick={() => {
                     setAdoptedPet(pet);
                     navigate("/");
-                  }}>Yes</button>
-                  <button onClick={() => setShowModal(false)}>No</button>
-                </div>
+                  }}
+                >
+                  Yes
+                </button>
+                <button onClick={() => setShowModal(false)}>No</button>
               </div>
-            </Modal>
-          ) : null }
+            </div>
+          </Modal>
+        ) : null}
       </div>
     </div>
   );
@@ -58,9 +61,9 @@ const Details = () => {
 function DetailsErrorBoundary(props) {
   return (
     <ErrorBoundary>
-      <Details {...props}/>
+      <Details {...props} />
     </ErrorBoundary>
   );
-};
+}
 
 export default DetailsErrorBoundary;
