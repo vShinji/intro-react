@@ -13,3 +13,8 @@
     @apply disabled:opacity-50;
   }
 }
+
+.active {
+  border-color: #333;
+  opacity: 0.6;
+}
