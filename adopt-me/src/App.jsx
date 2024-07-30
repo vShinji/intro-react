@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { Link, BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Details from "./Details";
 import AdoptedPetContext from "./AdoptedPetContext";
-import SearchParams from "./SearchParams";
+
+const Details = lazy(() => import("./Details"));
+const SearchParams = lazy(() => import("./SearchParams"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,20 +27,28 @@ const App = () => {
     >
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
-          <AdoptedPetContext.Provider value={adoptedPet}>
-            <header className="mb-5 w-full bg-white  p-7 text-center shadow">
-              <Link
-                className="text-6xl text-blue-300 hover:text-opacity-50"
-                to="/"
-              >
-                🐾 Adopt Me!
-              </Link>
-            </header>
-            <Routes>
-              <Route path="/details/:id" element={<Details />} />
-              <Route path="/" element={<SearchParams />} />
-            </Routes>
-          </AdoptedPetContext.Provider>
+          <Suspense
+            fallback={
+              <div className="align-center flex justify-center p-4">
+                <h2 className="animate-bounce text-8xl">🐾</h2>
+              </div>
+            }
+          >
+            <AdoptedPetContext.Provider value={adoptedPet}>
+              <header className="mb-5 w-full bg-white  p-7 text-center shadow">
+                <Link
+                  className="text-6xl text-blue-300 hover:text-opacity-50"
+                  to="/"
+                >
+                  🐾 Adopt Me!
+                </Link>
+              </header>
+              <Routes>
+                <Route path="/details/:id" element={<Details />} />
+                <Route path="/" element={<SearchParams />} />
+              </Routes>
+            </AdoptedPetContext.Provider>
+          </Suspense>
         </QueryClientProvider>
       </BrowserRouter>
     </div>

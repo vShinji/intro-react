@@ -17,9 +17,9 @@ const Pet = (props) => {
           alt={name}
         />
       </div>
-      <div className="absolute bottom-0 left-0 bg-gradient-to-tr from-blue-300 to-transparent pr-2 pt-2">
-        <h1>{name}</h1>
-        <h2>{`${animal} — ${breed} — ${location}`}</h2>
+      <div className="absolute bottom-0 left-0 bg-gradient-to-tr from-blue-200 to-transparent pr-2 pt-2">
+        <h1 className="ml-2 font-bold">{name}</h1>
+        <h2 className="ml-2">{`${animal} — ${breed} — ${location}`}</h2>
       </div>
     </Link>
   );
